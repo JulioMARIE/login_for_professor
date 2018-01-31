@@ -1,0 +1,25 @@
+(function ($) {
+  $.fn.MARIE_hoverFade=function (options) {
+      var def= {
+          "vfadeout":"slow",
+          "vfadein":"fast"
+      };
+      var par=$.extend(def,options);
+      return this.each(function () {
+         $(this).mouseover(function () {
+             $(this).fadeOut(par.vfadeout,function () {
+                 $(this).text('Hello');
+                 $(this).fadeIn(par.vfadein,function () {
+                     $(this).text($(this).html()+'  Name');
+                     $(this).slideUp(par.vfadein,function () {
+                         $(this).text('Name,Enjoy your visit');
+                         $(this).slideDown(par.vfadeout,function () {
+                             $(this).slideToggle(par.vfadein);
+                         })
+                     });
+                 });
+             });
+         });
+      });
+  };
+})(jQuery);
